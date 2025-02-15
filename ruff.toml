@@ -49,8 +49,8 @@ select = [
     "I"
 ]
 ignore = []
-fixable = ["ALL"]
-unfixable = []
+fixable = []
+unfixable = ["F401"]
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [format]

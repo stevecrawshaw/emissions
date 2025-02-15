@@ -21,7 +21,7 @@ per_cap_tbl <- pc_tbl %>%
       "South Gloucestershire",
       "North Somerset"
     ) | region_country == "National Total") %>% 
-  filter(calendar_year == 2021) %>% 
+#  filter(calendar_year == 2021) %>% 
   group_by(region_country) %>% 
   summarise(mean_per_cap_emissions = mean(per_capita_emissions_t_co2e))
   # select(per_capita_emissions_t_co2e)
