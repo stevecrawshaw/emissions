@@ -25,11 +25,15 @@ con.list_tables()
 
 emissions_tbl = con.table("emissions_tbl")
 emissions_tbl.columns
+
+# %%
+
 # %%
 national_tbl = emissions_tbl.filter(_.region_country == "National Total")
 
 # %%
-ca_la_tbl = con.table("ca_la_tbl")
+ca_la_tbl = con.table("ca_la_tbl").filter(_.ladnm != "North Somerset")
+ca_la_tbl.info()
 # ca_la_tbl.columns
 
 # %%
@@ -48,10 +52,11 @@ ca_percap_proper_tbl = (
     .mutate(per_cap=_.gt_sum_ca / _.pop_sum_ca)
     .rename(area="cauthnm")
     .select(_.calendar_year, _.area, _.per_cap)
-)
-
+)  # .order_by(_.calendar_year)
 # %%
-ca_percap_proper_tbl.execute()
+# generate the sql for an expression
+ibis.to_sql(ca_percap_proper_tbl)
+# %%
 
 # %%
 national_percap_proper_tbl = (
@@ -67,10 +72,12 @@ national_percap_proper_tbl.execute()
 # %%
 # stack the two tables
 unified_percap_tbl = ca_percap_proper_tbl.union(national_percap_proper_tbl)
-
+# %%
+# use this syntax to expose the sql and create a vierw based on it
+# in the motherduck db
+ibis.to_sql(unified_percap_tbl)
 # %%
 
-unified_percap_tbl.execute()
 # %%
 
 # %%
@@ -90,10 +97,10 @@ chart = (
 chart
 # %%
 
+# %%
+
 unified_percap_tbl.to_csv("data/unified_percap.csv")
 # %%
 
-# %%
-
-
+con.disconnect()
 # %%

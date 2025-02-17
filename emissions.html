@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.555">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Steve Crawshaw">
+<meta name="dcterms.date" content="2025-02-17">
+
+<title>Regional CO2 Emissions</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="emissions_files/libs/clipboard/clipboard.min.js"></script>
+<script src="emissions_files/libs/quarto-html/quarto.js"></script>
+<script src="emissions_files/libs/quarto-html/popper.min.js"></script>
+<script src="emissions_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="emissions_files/libs/quarto-html/anchor.min.js"></script>
+<link href="emissions_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="emissions_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="emissions_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="emissions_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="emissions_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="emissions_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="emissions_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="emissions_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="emissions_files/libs/datatables-binding-0.33/datatables.js"></script>
+
+<script src="emissions_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="emissions_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="emissions_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="emissions_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script src="emissions_files/libs/jszip-1.13.6/jszip.min.js"></script>
+
+<script src="emissions_files/libs/pdfmake-1.13.6/pdfmake.js"></script>
+
+<script src="emissions_files/libs/pdfmake-1.13.6/vfs_fonts.js"></script>
+
+<link href="emissions_files/libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet">
+
+<script src="emissions_files/libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+
+<script src="emissions_files/libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+
+<script src="emissions_files/libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+
+<script src="emissions_files/libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+
+<link href="emissions_files/libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+
+<script src="emissions_files/libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+
+<link href="emissions_files/libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+
+<script src="emissions_files/libs/selectize-0.12.0/selectize.min.js"></script>
+
+<link href="emissions_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="emissions_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Regional CO<sub>2</sub> Emissions</h1>
+<p class="subtitle lead">West of England Combined Authority</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Steve Crawshaw </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="drivers-of-falling-emissions" class="level2">
+<h2 class="anchored" data-anchor-id="drivers-of-falling-emissions">Drivers of Falling Emissions</h2>
+<p>The UK has made significant progress in reducing its greenhouse gas emissions since 2005, driven by a combination of policy decisions, economic factors, and technological advancements<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<section id="policy-decisions" class="level3">
+<h3 class="anchored" data-anchor-id="policy-decisions">Policy Decisions</h3>
+<ol type="1">
+<li><strong>Climate Change Act (2008)</strong>: This landmark legislation set a legal framework for the UK to reduce greenhouse gas emissions and build resilience to climate change<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
+<li><strong>Carbon Budgets</strong>: The UK has implemented a system of carbon budgets, which place a cap on the amount of greenhouse gases the UK can emit over a 5-year period<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
+<li><strong>UK Emissions Trading Scheme (ETS)</strong>: This cap-and-trade system incentivises decarbonization in the power sector, heavy industry, and aviation<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</li>
+<li><strong>Clean Power Target</strong>: The UK government has set an ambitious target of achieving a clean power system by 2030<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</li>
+</ol>
+</section>
+<section id="economic-and-technological-factors" class="level3">
+<h3 class="anchored" data-anchor-id="economic-and-technological-factors">Economic and Technological Factors</h3>
+<ol type="1">
+<li><strong>Renewable Energy Growth</strong>: The rapid expansion of renewable energy sources, particularly offshore wind, has been a key driver of emissions reductions<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</li>
+<li><strong>Coal Phase-Out</strong>: The UK has significantly reduced its reliance on coal for electricity generation, with plans to completely phase out coal-fired power plants<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</li>
+<li><strong>Energy Efficiency Improvements</strong>: Advancements in energy efficiency across various sectors have contributed to lower emissions<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</li>
+<li><strong>Industrial Decarbonization</strong>: Initiatives like the Industrial Decarbonisation Challenge have stimulated investment in low-carbon technologies for energy-intensive industries<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>.</li>
+</ol>
+</section>
+</section>
+<section id="regional-variations-in-emissions-trends" class="level2">
+<h2 class="anchored" data-anchor-id="regional-variations-in-emissions-trends">Regional Variations in Emissions Trends</h2>
+<p>Analysis of the per - capita emissions data from UK government data reveals significant regional variations in emissions trends across combined authority areas:</p>
+<ol type="1">
+<li><strong>Tees Valley</strong>: Experienced the most dramatic reduction, with per capita emissions falling from 27.31 in 2005 to 6.47 in 2022, a 76.3% decrease.</li>
+<li><strong>Cambridgeshire and Peterborough</strong>: Showed a substantial decrease from 11.55 in 2005 to 6.73 in 2022, a 41.7% reduction.</li>
+<li><strong>North East</strong>: Reduced emissions from 8.78 in 2005 to 3.74 in 2022, a 57.4% decrease.</li>
+<li><strong>West of England</strong>: Decreased from 8 in 2005 to 3.6 in 2022, a 54.4% reduction.</li>
+</ol>
+<p>These variations can be attributed to:</p>
+<ul>
+<li><strong>Industrial Composition</strong>: Areas with energy-intensive industries, like Tees Valley, have seen larger reductions as these sectors decarbonize<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</li>
+<li><strong>Economic Restructuring</strong>: Shifts from manufacturing to service-based economies in some regions have contributed to emissions reductions<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</li>
+<li><strong>Local Initiatives</strong>: Some combined authorities have implemented specific decarbonization strategies, leading to faster progress<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>.</li>
+</ul>
+<p>The chart below illustrates the per capita emissions trends for combined authority areas over the period for which data are available. The data includes all sectors and is calculated by summing the emissions from the constituent unitary authorities and dividing by the population for each year.</p>
+<p>It can be seen that Tees Valley is an outlier in terms of the per - capita emissions trends, because of the significant influence of the industrial sector in this region. Other regions are showing a steady decline in emissions, largely due to the factors listed above.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="emissions_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The West of England, has performed slightly better than the UK as a whole in terms of reducing per capita emissions. The table below shows the per capita emissions for the West of England and the UK as a whole in 2005 and 2022, along with the percentage change over this period.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="pnqmbexljl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pnqmbexljl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pnqmbexljl thead, #pnqmbexljl tbody, #pnqmbexljl tfoot, #pnqmbexljl tr, #pnqmbexljl td, #pnqmbexljl th {
+  border-style: none;
+}
+
+#pnqmbexljl p {
+  margin: 0;
+  padding: 0;
+}
+
+#pnqmbexljl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pnqmbexljl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pnqmbexljl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pnqmbexljl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pnqmbexljl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pnqmbexljl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pnqmbexljl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pnqmbexljl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pnqmbexljl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pnqmbexljl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pnqmbexljl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pnqmbexljl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pnqmbexljl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pnqmbexljl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pnqmbexljl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnqmbexljl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pnqmbexljl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pnqmbexljl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pnqmbexljl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnqmbexljl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pnqmbexljl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnqmbexljl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pnqmbexljl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnqmbexljl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pnqmbexljl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pnqmbexljl .gt_left {
+  text-align: left;
+}
+
+#pnqmbexljl .gt_center {
+  text-align: center;
+}
+
+#pnqmbexljl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pnqmbexljl .gt_font_normal {
+  font-weight: normal;
+}
+
+#pnqmbexljl .gt_font_bold {
+  font-weight: bold;
+}
+
+#pnqmbexljl .gt_font_italic {
+  font-style: italic;
+}
+
+#pnqmbexljl .gt_super {
+  font-size: 65%;
+}
+
+#pnqmbexljl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pnqmbexljl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pnqmbexljl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pnqmbexljl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pnqmbexljl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pnqmbexljl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pnqmbexljl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pnqmbexljl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pnqmbexljl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Area" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Area</th>
+<th id="a2005" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2005</th>
+<th id="a2022" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">2022</th>
+<th id="Change-percent" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Change percent</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Area">West of England</td>
+<td class="gt_row gt_right" headers="2005">8.0</td>
+<td class="gt_row gt_right" headers="2022">3.6</td>
+<td class="gt_row gt_right" headers="Change percent">-55</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Area">National</td>
+<td class="gt_row gt_right" headers="2005">8.8</td>
+<td class="gt_row gt_right" headers="2022">4.5</td>
+<td class="gt_row gt_right" headers="Change percent">-49</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>The line chart below shows the per capita emissions trends for combined authority areas over the period for which data are available. The chart highlights the West of England and the National trendlines for comparison. Tees Valley has been omitted for visibility due to its outlier status.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="emissions_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="emissions-within-the-west-of-england-mayoral-combined-authority" class="level3">
+<h3 class="anchored" data-anchor-id="emissions-within-the-west-of-england-mayoral-combined-authority">Emissions within the West of England Mayoral Combined Authority</h3>
+<p>The three unitary authorities within the West of England Mayoral Combined Authority (Bath and North East Somerset, Bristol, and South Gloucestershire) have shown a consistent downward trend in absolute emissions over the period for which data are available. This trend is in line with the broader national and regional emissions reductions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="plots/bar-17983-chart-2.png" class="img-fluid figure-img"></p>
+<figcaption>Unitary Authority Emissions</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="dominant-sectors-in-emissions-changes" class="level2">
+<h2 class="anchored" data-anchor-id="dominant-sectors-in-emissions-changes">Dominant Sectors in Emissions Changes</h2>
+<p>The key sectors driving changes in emissions include:</p>
+<ol type="1">
+<li><strong>Power Generation</strong>: The transition from coal to renewables has been the largest contributor to emissions reductions<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</li>
+<li><strong>Industry</strong>: Industrial decarbonization efforts, including the adoption of carbon capture and storage technologies, have played a significant role<a href="#fn14" class="footnote-ref" id="fnref14" role="doc-noteref"><sup>14</sup></a>.</li>
+<li><strong>Transport</strong>: While progress has been slower in this sector, it is increasingly important for future emissions reductions<a href="#fn15" class="footnote-ref" id="fnref15" role="doc-noteref"><sup>15</sup></a>.</li>
+<li><strong>Buildings</strong>: Improvements in energy efficiency and the transition to low-carbon heating systems are becoming more significant<a href="#fn16" class="footnote-ref" id="fnref16" role="doc-noteref"><sup>16</sup></a>.</li>
+<li><strong>Agriculture and Land Use</strong>: These sectors are expected to play a growing role in future emissions reductions and carbon sequestration efforts<a href="#fn17" class="footnote-ref" id="fnref17" role="doc-noteref"><sup>17</sup></a>.</li>
+</ol>
+<p>In conclusion, while the UK has made substantial progress in reducing emissions, particularly in the power sector, future reductions will require more significant contributions from transport, buildings, and agriculture. Regional variations highlight the importance of tailored strategies that account for local industrial and economic contexts.</p>
+<section id="per---capita-emissions-data" class="level3">
+<h3 class="anchored" data-anchor-id="per---capita-emissions-data">Per - Capita Emissions Data</h3>
+<div class="cell">
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-3033916da691a5e27408" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-3033916da691a5e27408">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"2005\" data-max=\"2022\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none;position: absolute;width: 200px;opacity: 1\">\n      <div data-min=\"3.43\" data-max=\"27.31\" data-scale=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[[2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022],["Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","Cambridgeshire and Peterborough","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","East Midlands","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Greater Manchester","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","Liverpool City Region","National","National","National","National","National","National","National","National","National","National","National","National","National","National","National","National","National","National","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","North East","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","South Yorkshire","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","Tees Valley","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Midlands","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West Yorkshire","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","West of England","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire","York and North Yorkshire"],[11.55,11.43,11.22,10.88,9.77,9.970000000000001,9.220000000000001,9.449999999999999,9.17,8.460000000000001,8.140000000000001,7.82,7.6,7.44,7.14,6.61,6.97,6.73,9.630000000000001,9.529999999999999,9.18,8.82,7.96,8.300000000000001,7.69,7.87,7.81,7.25,7.11,6.65,6.53,6.49,6.33,5.73,6.33,6.02,7.43,7.36,7.07,6.89,6.23,6.52,5.82,6.16,5.94,5.27,5.08,4.72,4.53,4.51,4.31,3.84,4.05,3.7,7.94,7.75,7.65,7.31,6.61,6.83,6.44,6.63,6.28,5.69,5.37,5,4.81,4.78,4.56,4.13,4.33,3.93,8.83,8.74,8.5,8.210000000000001,7.36,7.58,6.86,7.14,6.98,6.35,6.06,5.61,5.39,5.3,5.06,4.5,4.78,4.47,8.779999999999999,8.59,8.19,7.9,7,7.41,6.84,6.75,6,5.31,5.11,4.73,4.55,4.48,4.26,3.76,4.03,3.74,8.56,8.19,7.75,7.54,6.67,7,6.47,6.71,6.66,6.07,5.75,5.38,5.23,5.23,5.07,4.5,4.7,4.32,27.31,26.59,26.58,25.45,21.79,15.1,12.97,20.64,22.78,20.38,17.5,10.07,10.32,9.67,9.27,8.390000000000001,7.25,6.47,7.15,7.06,6.78,6.53,5.77,6,5.47,5.67,5.52,4.95,4.79,4.41,4.22,4.09,3.86,3.43,3.69,3.43,7.66,7.49,7.25,7.02,6.38,6.66,6.09,6.27,6.12,5.57,5.35,5.03,4.86,4.82,4.64,4.1,4.34,3.96,7.96,7.75,7.63,6.83,6.18,6.32,5.73,5.91,5.71,5.15,4.95,4.59,4.37,4.25,4.05,3.54,3.9,3.63,9.369999999999999,9.369999999999999,9.01,8.59,7.93,8.25,7.51,7.82,7.61,6.97,6.82,6.54,6.28,6.3,6.06,5.4,5.96,5.49]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Calendar Year<\/th>\n      <th>Area<\/th>\n      <th>Per Capita Emissions (tCO2e)<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"dom":"Brftip","buttons":["copy","csv","excel","pdf","print"],"caption":"Per Capita Emissions Data for Combined Authority Areas: 2005:2022","columnDefs":[{"className":"dt-right","targets":[0,2]},{"name":"Calendar Year","targets":0},{"name":"Area","targets":1},{"name":"Per Capita Emissions (tCO2e)","targets":2}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="footnotes" class="level3">
+<h3 class="anchored" data-anchor-id="footnotes">Footnotes</h3>
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13"><p>https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2024-report-to-parliament/<a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn14"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref14" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn15"><p>https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2024-report-to-parliament/<a href="#fnref15" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn16"><p>https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf<a href="#fnref16" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn17"><p>https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2024-report-to-parliament/<a href="#fnref17" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

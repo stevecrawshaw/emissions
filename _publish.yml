@@ -1,0 +1,4 @@
+- source: emissions.qmd
+  quarto-pub:
+    - id: aa9c14db-fd77-40c9-a0f9-8c53a89fc018
+      url: 'https://stevecrawshaw.quarto.pub/regional-co2-emissions'
