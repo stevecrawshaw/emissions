@@ -3,15 +3,15 @@ title: "Regional CO~2~ Emissions"
 subtitle: "West of England Combined Authority"
 date: "`r Sys.Date()`"
 author: "Steve Crawshaw"
-format: 
-  docx:
-    prefer-html: true
+format: html
 execute: 
   eval: true
   echo: false
-  
-
 ---
+
+<!-- reference-doc: template.docx -->
+<!--     prefer-html: true -->
+
 
 ```{r}
 #| include = FALSE
@@ -21,6 +21,7 @@ pacman::p_load(tidyverse, ggtext, ggthemes, glue, janitor, gt, gghighlight, open
 ```
 ```{r}
 #| include = FALSE
+# variables to use later in inline code
 percap_tbl <- read_csv("data/unified_percap.csv")
 
 woe_2005 <- percap_tbl %>% 
@@ -33,43 +34,45 @@ woe_2022 <- percap_tbl %>%
 
 woe_reduction <- (woe_2005 - woe_2022) * 100 / woe_2005
 
-
 ```
 
 ## Drivers of Falling Emissions
+
 
 The UK has made significant progress in reducing its greenhouse gas emissions since 2005, driven by a combination of policy decisions, economic factors, and technological advancements[^2].
 
 ### Policy Decisions
 
-1. **Climate Change Act (2008)**: This landmark legislation set a legal framework for the UK to reduce greenhouse gas emissions and build resilience to climate change[^2].
-2. **Carbon Budgets**: The UK has implemented a system of carbon budgets, which place a cap on the amount of greenhouse gases the UK can emit over a 5-year period[^2].
-3. **UK Emissions Trading Scheme (ETS)**: This cap-and-trade system incentivises decarbonization in the power sector, heavy industry, and aviation[^2].
-4. **Clean Power Target**: The UK government has set an ambitious target of achieving a clean power system by 2030[^2].
+1. **[Climate Change Act (2008)](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjpnYXqsM-LAxU-UUEAHcGRJTgQFnoECCwQAQ&url=https%3A%2F%2Fwww.legislation.gov.uk%2Fukpga%2F2008%2F27%2Fcontents&usg=AOvVaw3JTme_mHOHn9u37X5uQ3uB&opi=89978449)**: This landmark legislation set a legal framework for the UK to reduce greenhouse gas emissions and build resilience to climate change.
+2. **[Carbon Budgets](https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution)**: The UK has implemented a system of carbon budgets, which place a cap on the amount of greenhouse gases the UK can emit over a 5-year period.
+3. **[UK Emissions Trading Scheme (ETS)](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiej7aqsc-LAxXfUkEAHfJsIpEQFnoECBMQAQ&url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Fpublications%2Fparticipating-in-the-uk-ets%2Fparticipating-in-the-uk-ets&usg=AOvVaw04egsHArVmAxEzaHmQEKqF&opi=89978449)**: This cap-and-trade system incentivises decarbonization in the power sector, heavy industry, and aviation.
+4. **[Clean Power Target](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwi8lvy6sc-LAxU4V0EAHc-lLKIQFnoECA0QAQ&url=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Fpublications%2Fclean-power-2030-action-plan&usg=AOvVaw2Pz6qCy-MQmbaIndCDWX8n&opi=89978449)**: The UK government has set an ambitious target of achieving a clean power system by 2030.
 
 ### Economic and Technological Factors
 
-1. **Renewable Energy Growth**: The rapid expansion of renewable energy sources, particularly offshore wind, has been a key driver of emissions reductions[^4].
-2. **Coal Phase-Out**: The UK has significantly reduced its reliance on coal for electricity generation, with plans to completely phase out coal-fired power plants[^2].
-3. **Energy Efficiency Improvements**: Advancements in energy efficiency across various sectors have contributed to lower emissions[^4].
-4. **Industrial Decarbonization**: Initiatives like the Industrial Decarbonisation Challenge have stimulated investment in low-carbon technologies for energy-intensive industries[^4].
+The Committee for Climate Change [2024 report to parliament](https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2024-report-to-parliament/) highlights several key factors driving falling emissions:
+
+1. **Renewable Energy Growth**: The rapid expansion of renewable energy sources, particularly offshore wind, has been a key driver of emissions reductions.
+2. **Coal Phase-Out**: The UK has significantly reduced its reliance on coal for electricity generation, with plans to completely phase out coal-fired power plants.
+3. **Energy Efficiency Improvements**: Advancements in energy efficiency across various sectors have contributed to lower emissions.
+4. **Industrial Decarbonization**: Initiatives like the Industrial Decarbonisation Challenge have stimulated investment in low-carbon technologies for energy-intensive industries.
 
 ## Regional Variations in Emissions Trends
 
 Analysis of the per - capita emissions data from UK government data reveals significant regional variations in emissions trends across combined authority areas:
 
-1. **Tees Valley**: Experienced the most dramatic reduction, with per capita emissions falling from 27.31 in 2005 to 6.47 in 2022, a 76.3% decrease.
-2. **Cambridgeshire and Peterborough**: Showed a substantial decrease from 11.55 in 2005 to 6.73 in 2022, a 41.7% reduction.
+1. **Tees Valley**: Experienced the most dramatic reduction, with per capita emissions falling from 27.31 tonnes per capita in 2005 to 6.47 in 2022, a 76.3% decrease.
+2. **Cambridgeshire and Peterborough**: Showed a substantial decrease from 11.55 tonnes per capita in 2005 to 6.73 in 2022, a 41.7% reduction.
 3. **North East**: Reduced emissions from 8.78 in 2005 to 3.74 in 2022, a 57.4% decrease.
-4. **West of England**: Decreased from `r round(woe_2005, 1)` in 2005 to `r round(woe_2022, 1)` in 2022, a `r round(woe_reduction, 1)`% reduction.
+4. **West of England**: Decreased from `r round(woe_2005, 1)` tonnes per capita in 2005 to `r round(woe_2022, 1)` in 2022, a `r round(woe_reduction, 1)`% reduction.
 
 These variations can be attributed to:
 
-- **Industrial Composition**: Areas with energy-intensive industries, like Tees Valley, have seen larger reductions as these sectors decarbonize[^4].
-- **Economic Restructuring**: Shifts from manufacturing to service-based economies in some regions have contributed to emissions reductions[^2].
-- **Local Initiatives**: Some combined authorities have implemented specific decarbonization strategies, leading to faster progress[^4].
+- **Industrial Composition**: Areas with energy-intensive industries, like Tees Valley, have seen larger reductions as these sectors decarbonize.
+- **Economic Restructuring**: Shifts from manufacturing to service-based economies in some regions have contributed to emissions reductions.
+- **Local Initiatives**: Some combined authorities have implemented specific decarbonization strategies, leading to faster progress.
 
-The chart below illustrates the per capita emissions trends for combined authority areas over the period for which data are available. The data includes all sectors and is calculated by summing the emissions from the constituent unitary authorities and dividing by the population for each year.
+The chart below illustrates the per capita emissions trends for combined authority areas over the period for which data are available. Per capita data are used to facilitate meaningful comparisons. The data includes all sectors and is calculated by summing the emissions from the constituent unitary authorities and dividing by the total combined authority population for each year.
 
 It can be seen that Tees Valley is an outlier in terms of the per - capita emissions trends, because of the significant influence of the industrial sector in this region. Other regions are showing a steady decline in emissions, largely due to the factors listed above.
 
@@ -139,13 +142,13 @@ The three unitary authorities within the West of England Mayoral Combined Author
 
 ## Dominant Sectors in Emissions Changes
 
-The key sectors driving changes in emissions include:
+According to the Committee for Climate Change, The key sectors driving changes in emissions include:
 
-1. **Power Generation**: The transition from coal to renewables has been the largest contributor to emissions reductions[^5].
-2. **Industry**: Industrial decarbonization efforts, including the adoption of carbon capture and storage technologies, have played a significant role[^4].
-3. **Transport**: While progress has been slower in this sector, it is increasingly important for future emissions reductions[^5].
-4. **Buildings**: Improvements in energy efficiency and the transition to low-carbon heating systems are becoming more significant[^4].
-5. **Agriculture and Land Use**: These sectors are expected to play a growing role in future emissions reductions and carbon sequestration efforts[^5].
+1. **Power Generation**: The transition from coal to renewables has been the largest contributor to emissions reductions.
+2. **Industry**: Industrial decarbonization efforts, including the adoption of carbon capture and storage technologies, have played a significant role.
+3. **Transport**: While progress has been slower in this sector, it is increasingly important for future emissions reductions.
+4. **Buildings**: Improvements in energy efficiency and the transition to low-carbon heating systems are becoming more significant.
+5. **Agriculture and Land Use**: These sectors are expected to play a growing role in future emissions reductions and carbon sequestration efforts.
 
 In conclusion, while the UK has made substantial progress in reducing emissions, particularly in the power sector, future reductions will require more significant contributions from transport, buildings, and agriculture. Regional variations highlight the importance of tailored strategies that account for local industrial and economic contexts.
 
@@ -170,51 +173,5 @@ datatable(
                              buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
               caption = "Per Capita Emissions Data for Combined Authority Areas: 2005:2022")
               )
-
-
 ```
 
-
-### Footnotes
-
-[^1]: https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/7868236/b7784b99-e08e-45c3-ada3-77bdce503a27/unified_percap.csv
-
-[^2]: https://www.gov.uk/government/publications/uks-2035-nationally-determined-contribution-ndc-emissions-reduction-target-under-the-paris-agreement/united-kingdom-of-great-britain-and-northern-irelands-2035-nationally-determined-contribution
-
-[^3]: https://www.gov.uk/government/publications/powering-up-britain/powering-up-britain-net-zero-growth-plan
-
-[^4]: https://www.ukri.org/wp-content/uploads/2025/01/IUK-101224-NetZeroReview2024.pdf
-
-[^5]: https://www.theccc.org.uk/publication/progress-in-reducing-emissions-2024-report-to-parliament/
-
-[^6]: https://assets.publishing.service.gov.uk/media/5a795949e5274a2acd18c149/1358-the-carbon-plan.pdf
-
-[^7]: https://www.gov.uk/government/news/government-launches-15-million-ai-programme-for-reducing-carbon-emissions
-
-[^8]: https://researchbriefings.files.parliament.uk/documents/CBP-9888/CBP-9888.pdf
-
-[^9]: https://unfccc.int/sites/default/files/2025-01/UK's 2035 NDC ICTU.pdf
-
-[^10]: https://commonslibrary.parliament.uk/climate-change-solutions-the-role-of-technology/
-
-[^11]: https://www.bbc.co.uk/news/58160547
-
-[^12]: https://commonslibrary.parliament.uk/research-briefings/cbp-9888/
-
-[^13]: https://www.gov.uk/government/publications/uk-net-zero-research-and-innovation-framework-delivery-plan-2022-to-2025/uk-net-zero-research-and-innovation-framework-delivery-plan-2022-to-2025
-
-[^14]: https://lordslibrary.parliament.uk/government-climate-policy-economic-impact/
-
-[^15]: https://www.bankofengland.co.uk/prudential-regulation/publication/2025/january/pra-climate-change-adaptation-report-2025
-
-[^16]: https://www.lse.ac.uk/granthaminstitute/explainers/what-technology-do-we-need-to-cut-carbon-emissions/
-
-[^17]: https://greenallianceblog.org.uk/2025/01/13/what-will-2025-mean-for-climate-policy-and-politics/
-
-[^18]: https://www.pwc.co.uk/services/sustainability-climate-change/insights/net-zero-economy-index.html
-
-[^19]: https://sustainableict.blog.gov.uk/2025/01/09/green-shoots-but-plenty-more-still-to-do/
-
-[^20]: https://www.gov.uk/government/publications/net-zero-strategy/3-reducing-emissions-across-the-economy
-
-[^21]: https://www.sustainability.gov/pdfs/united-kingdom-nzgi-roadmap.pdf

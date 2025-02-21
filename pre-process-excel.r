@@ -12,6 +12,8 @@ emissions_xl_tbl <- read_xlsx("data/2005-22-uk-local-authority-ghg-emissions.xls
                               range = "A5:AX7259") |> 
   clean_names()
 
+emissions_xl_tbl |> 
+  write_csv("data/emissions_tbl.csv")
 
 con <- dbConnect(duckdb::duckdb(), "data/emissions.duckdb")
 dbWriteTable(con, "emissions_tbl", emissions_xl_tbl)

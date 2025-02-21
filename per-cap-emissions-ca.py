@@ -23,8 +23,10 @@ con = ibis.duckdb.connect(connect_string)
 con.list_tables()
 # %%
 
-emissions_tbl = con.table("emissions_tbl")
-emissions_tbl.columns
+# emissions_tbl = con.table("emissions_tbl")
+# emissions_tbl.columns
+
+emissions_tbl = ibis.read_parquet("../mca-data/data/emissions_clean.parquet")
 
 # %%
 
