@@ -33,7 +33,7 @@ woe_las <- c("Bath and North East Somerset",
 # data updated june \ july each year
 # https://assets.publishing.service.gov.uk/media/667ad86497ea0c79abfe4bfd/2005-2022-local-authority-ghg-emissions-csv-dataset.csv
 
-woe_source_data_tbl <- read_csv("data/2005-2022-local-authority-ghg-emissions-csv-dataset.csv") %>% 
+woe_source_data_tbl <- read_csv("data/2005-23-uk-local-authority-ghg-emissions-CSV-dataset.csv") %>% 
   clean_names() %>% 
   filter(local_authority %in% woe_las)
 
@@ -159,20 +159,20 @@ plot <- plot_tbl %>%
        colour = "Type",
        x = "Year",
        y = quickText("kt CO2e"),
-       caption = "DESNZ UK LA Greenhouse gas emissions July 2024") +
+       caption = "DESNZ UK LA Greenhouse gas emissions July 2025") +
   chart_theme()
 
 
 plot
 
-ggsave('plots/WoE_emissions_net_zero.png',
+ggsave('plots/WoE_emissions_net_zero_2023.png',
        plot = plot,
        device = "png", height = 7, width = 10)    
 plot_tbl %>% 
-  write_csv('data/woe_emissions_territorial.csv')
+  write_csv('data/woe_emissions_territorial_2023.csv')
 
 calc_data %>% 
-  write_csv("data/net_zero_calculation_data_territorial.csv")
+  write_csv("data/net_zero_calculation_data_territorial_2023.csv")
 
 # Derive Contributions by sector ----
 
@@ -359,8 +359,6 @@ ggsave("plots/sector_3_time_series_plot.png",
        plot = sector_3_time_series_plot,
        bg = "white", height = 7, width = 10)
 
-# q: how to expand limits of scale ggplot?
-# 
 
 
 
@@ -423,7 +421,7 @@ scales::show_col(weca_core_colours)
 la_breakdown_tbl <- woe_sector_tbl |> 
   group_by(local_authority, calendar_year) |> 
   summarise(total_emissions = sum(territorial_emissions_kt_co2e),
-            total_emissions_la_control = sum(co2_emissions_within_the_scope_of_influence_of_l_as_kt_co2)) |>
+            total_emissions_la_control = sum(emissions_within_the_scope_of_influence_of_l_as_kt_co2)) |>
   pivot_longer(cols = c(total_emissions, total_emissions_la_control),
                names_to = "emission_type",
                values_to = "KtCO2e") |>
@@ -455,6 +453,8 @@ plot_la_bar_10yr <- la_breakdown_tbl %>%
        y = quickText("KtCO2e"),
        color = "Local Authority",
        fill = "Local Authority") 
+
+plot_la_bar_10yr
 
 ggsave("plots/la_plot_10yr_total_territorial_emissions.png",
        plot_la_bar_10yr,
