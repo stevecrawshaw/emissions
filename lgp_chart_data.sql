@@ -55,16 +55,16 @@ SELECT
   d."Year",
   (
     d."Domestic_UK" / b.base_domestic_uk
-  ) * 100 AS "Domestic_UK_Index",
+  ) * 100 AS "Domestic UK Index",
   (
     d."Domestic_WECA+" / b.base_domestic_weca
-  ) * 100 AS "Domestic_WECA+_Index",
+  ) * 100 AS "Domestic WECA+ Index",
   (
     d."Transport_UK" / b.base_transport_uk
-  ) * 100 AS "Transport_UK_Index",
+  ) * 100 AS "Transport UK Index",
   (
     d."Transport_WECA+" / b.base_transport_weca
-  ) * 100 AS "Transport_WECA+_Index"
+  ) * 100 AS "Transport WECA+ Index"
 FROM
   pivoted_emissions_base_tbl d,
   base_year b
