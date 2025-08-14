@@ -10,6 +10,7 @@
 # territorial emissions have been used throughout and North Somerset not included
 
 pacman::p_load(tidyverse,
+               readr,
                readxl,
                glue,
                janitor,
@@ -23,33 +24,54 @@ pacman::p_load(tidyverse,
                scales
                )
 
+
 weca_core_colours <- config::get(config = "colours")[c(-1)] %>% 
   unlist()
 
 woe_las <- c("Bath and North East Somerset",
              "Bristol, City of",
-             "South Gloucestershire")
+             "South Gloucestershire",
+             "North Somerset")
+
+# woe_las = "all"
 
 # data updated june \ july each year
 # https://assets.publishing.service.gov.uk/media/667ad86497ea0c79abfe4bfd/2005-2022-local-authority-ghg-emissions-csv-dataset.csv
+# 
+source_path <- "data/2005-23-uk-local-authority-ghg-emissions-CSV-dataset.csv"
 
-woe_source_data_tbl <- read_csv("data/2005-23-uk-local-authority-ghg-emissions-CSV-dataset.csv") %>% 
-  clean_names() %>% 
-  filter(local_authority %in% woe_las)
+read_filter <- function(source_path, woe_las = "all"){
+  
+  all_las <- read_csv(source_path) %>% 
+    clean_names() 
+  
+  if (woe_las[1] != "all") {
+  # filter for just the West of England local authorities
+  
+   out <- all_las %>% 
+      filter(local_authority %in% woe_las)
+  } else {
+  out <- all_las  
+  }
+  
+  return (out)
+}
+  
+source_data_tbl <- read_filter(source_path, woe_las = "all")
 
 # Calculate Net Zero and BAU Trajectories ----
 
-woe_historic_tbl <-  woe_source_data_tbl %>% 
+historic_tbl <-  source_data_tbl %>% 
   group_by(calendar_year) %>% 
   summarise(emissions_co2e_kt = sum(territorial_emissions_kt_co2e)) %>% 
   mutate(source = "Historic")
 
 # Get the start and end values and the number of years
-start_year <- min(woe_historic_tbl$calendar_year)
-end_year <- max(woe_historic_tbl$calendar_year)
+start_year <- min(historic_tbl$calendar_year)
+end_year <- max(historic_tbl$calendar_year)
 
-start_value <- woe_historic_tbl$emissions_co2e_kt[woe_historic_tbl$calendar_year == start_year]
-end_value <- woe_historic_tbl$emissions_co2e_kt[woe_historic_tbl$calendar_year == end_year]
+start_value <- historic_tbl$emissions_co2e_kt[historic_tbl$calendar_year == start_year]
+end_value <- historic_tbl$emissions_co2e_kt[historic_tbl$calendar_year == end_year]
 
 # Number of years between the start and end values
 n <- end_year - start_year
@@ -99,9 +121,9 @@ for (i in 1:(project_year - end_year)){
   
 }
 
-nz_traj_emission  <- c(woe_historic_tbl$emissions_co2e_kt[woe_historic_tbl$calendar_year == end_year], nz_traj_emission)
+nz_traj_emission  <- c(historic_tbl$emissions_co2e_kt[historic_tbl$calendar_year == end_year], nz_traj_emission)
 
-proj_emissions = c(woe_historic_tbl$emissions_co2e_kt[woe_historic_tbl$calendar_year == end_year], proj_emissions)
+proj_emissions = c(historic_tbl$emissions_co2e_kt[historic_tbl$calendar_year == end_year], proj_emissions)
 
 projections <- tibble(calendar_year = nz_traj_years,
                       emissions_co2e_kt = proj_emissions,
@@ -111,7 +133,7 @@ nz_traj_tbl <- tibble(calendar_year = nz_traj_years,
                       emissions_co2e_kt = nz_traj_emission,
                       source = "Net zero 2030")
 
-plot_tbl <- bind_rows(woe_historic_tbl, projections, nz_traj_tbl) %>% 
+plot_tbl <- bind_rows(historic_tbl, projections, nz_traj_tbl) %>% 
   mutate(calendar_year = as.integer(calendar_year)) %>% 
   glimpse()
 
@@ -176,15 +198,15 @@ calc_data %>%
 
 # Derive Contributions by sector ----
 
-woe_sector_tbl <- woe_source_data_tbl %>% 
+sector_tbl <- source_data_tbl %>% 
   select(local_authority, la_ghg_sector, where(is.numeric)) %>% 
   glimpse()
 
-(min_year <- max(woe_sector_tbl$calendar_year) - 9)
-(cur_year <- max(woe_sector_tbl$calendar_year))
+(min_year <- max(sector_tbl$calendar_year) - 9)
+(cur_year <- max(sector_tbl$calendar_year))
 new_names <- c("la_ghg_sector", "year_start", "year_end")
 
-sector_change_10yr_tbl <- woe_sector_tbl %>% 
+sector_change_10yr_tbl <- sector_tbl %>% 
   filter(calendar_year == min_year |
          calendar_year == cur_year) %>% 
   group_by(la_ghg_sector, calendar_year) %>% 
@@ -230,22 +252,34 @@ sector_change_plot <- ggplot(chart_tbl,
 sector_change_plot
 
 
-ggsave("plots/sector_change_plot.png",
+ggsave("plots/sector_change_plot_inc_ns.png",
        plot = sector_change_plot,
        bg = "white", height = 7, width = 5)
 
 # Make GT table of sector trends and contributions ----
 
-subset_co2_tbl <- woe_sector_tbl |> 
+make_subset_co2_tbl <- function(sector_tbl, woe_las){
+    subset_co2_tbl <- sector_tbl |> 
   filter(calendar_year >= min_year) %>% 
   select(local_authority,
          calendar_year,
          territorial_emissions_kt_co2e,
          mid_year_population_thousands,
-         la_ghg_sector) |>
-  glimpse()
+         la_ghg_sector)
 
-woe_sector_pop_tbl <- subset_co2_tbl |>
+  if (woe_las[1] != "all"){
+  out <- subset_co2_tbl
+  } else {
+    out <- subset_co2_tbl |> 
+  filter(la_ghg_sector != "LULUCF")
+  
+  }
+return(out)  
+}
+
+subset_co2_tbl <- make_subset_co2_tbl(sector_tbl, woe_las)
+
+sector_pop_tbl <- subset_co2_tbl |>
   group_by(calendar_year, la_ghg_sector, local_authority) |>
   summarise(total_emissions = sum(territorial_emissions_kt_co2e,
                                   na.rm = TRUE),
@@ -258,7 +292,7 @@ woe_sector_pop_tbl <- subset_co2_tbl |>
             .groups = "drop") 
 
 # calculate the ten year change  percent
-gt_source_tbl_1 <- woe_sector_pop_tbl %>% 
+gt_source_tbl_1 <- sector_pop_tbl %>% 
   filter(calendar_year == end_year | calendar_year == min_year) %>% 
   pivot_wider(id_cols = la_ghg_sector,
               names_from = calendar_year, values_from = total_emissions_woe, names_prefix = "year_") %>% 
@@ -317,7 +351,7 @@ sector_gt %>%
   gtsave("plots/gt_sector_table_territorial.png")
 
 # Sector time series ---
-woe_broad_sector_tbl <- woe_sector_tbl |> 
+woe_broad_sector_tbl <- sector_tbl |> 
   group_by(la_ghg_sector, calendar_year) |>
   summarise(total_emissions = sum(territorial_emissions_kt_co2e),
             .groups = "drop") |> 
@@ -474,3 +508,17 @@ la_breakdown_tbl |>
 
 # q: how to display x axis values in ggplot as integers?
 # a: use scale_x_continuous(labels = unique(woe_sector_pop_tbl$calendar_year),
+# 
+# 
+# 
+# 
+#  SECTOR AND CONTRIBUTION ANALYSIS UK and MCA ----
+
+
+
+source_data_tbl |> 
+  filter(calendar_year == end_year) |>
+  group_by(la_ghg_sector) |>
+  summarise(total_emissions = sum(territorial_emissions_kt_co2e)) |> 
+  mutate(percentage_of_total = total_emissions * 100 / sum(total_emissions, na.rm = TRUE))
+
