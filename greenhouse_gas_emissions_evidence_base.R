@@ -100,20 +100,17 @@ CAGR <- (end_value / start_value)^(1 / n) - 1
 project_year <- 2030
 years_to_project <- project_year - end_year
 projected_emissions_2030 <- end_value * (1 + CAGR)^years_to_project
+start_year_for_net_zero <- 2025 # artificially set to 2025
 
-ext_years <- seq.int(end_year + 1, project_year)
-l <- length(ext_years)
+ext_years <- seq.int(end_year, project_year)
+l <- length(ext_years + 1)
+nzl <- project_year - start_year_for_net_zero + 1
 
 value <- end_value
-nz_value <- end_value
 proj_emissions <- vector(mode = "numeric", length = l)
-nz_traj_emission <- vector(mode = "numeric", length = l)
+nz_traj_emission <- vector(mode = "numeric", length = nzl)
 
-nz_traj_years <- seq.int(end_year, project_year)
-
-traj_len <- length(nz_traj_emission)
-nz_annual_reduction <- end_value / traj_len
-
+nz_traj_years <- seq.int(start_year_for_net_zero, project_year)
 
 # Display the results
 calc_data <- list(
@@ -123,35 +120,40 @@ calc_data <- list(
   end_value = end_value,
   CAGR = CAGR,
   project_year = project_year,
-  projected_emissions_2030_BAU = projected_emissions_2030,
-  annual_reduction_for_net_zero_2030 = nz_annual_reduction
+  projected_emissions_2030_BAU = projected_emissions_2030
 ) %>%
   enframe() %>%
   mutate(value = unlist(value)) %>%
   glimpse()
 
-for (i in 1:(project_year - end_year)) {
-  value = value + (value * CAGR)
+for (i in 1:(l)) {
   proj_emissions[i] = value
-  nz_value = nz_value - nz_annual_reduction
-  nz_traj_emission[i] = round(nz_value)
+  value = value + (value * CAGR)
 }
 
-nz_traj_emission <- c(
-  historic_tbl$emissions_co2e_kt[historic_tbl$calendar_year == end_year],
-  nz_traj_emission
-)
 
-proj_emissions = c(
-  historic_tbl$emissions_co2e_kt[historic_tbl$calendar_year == end_year],
-  proj_emissions
-)
-
-projections <- tibble(
-  calendar_year = nz_traj_years,
+(projections <- tibble(
+  calendar_year = ext_years,
   emissions_co2e_kt = proj_emissions,
   source = "Predicted BAU"
-)
+))
+
+
+(nz_value <- projections$emissions_co2e_kt[
+  projections$calendar_year == start_year_for_net_zero
+])
+
+(nz_annual_reduction <- nz_value / (nzl - 1))
+
+# net zero vector
+for (i in 1:(nzl)) {
+  nz_traj_emission[i] = nz_value
+  nz_value = nz_value - nz_annual_reduction
+}
+
+
+nz_traj_emission
+
 
 nz_traj_tbl <- tibble(
   calendar_year = nz_traj_years,
@@ -159,9 +161,9 @@ nz_traj_tbl <- tibble(
   source = "Net zero 2030"
 )
 
+
 plot_tbl <- bind_rows(historic_tbl, projections, nz_traj_tbl) %>%
-  mutate(calendar_year = as.integer(calendar_year)) %>%
-  glimpse()
+  mutate(calendar_year = as.integer(calendar_year))
 
 cols <- weca_core_colours[2:4] %>% unname()
 
