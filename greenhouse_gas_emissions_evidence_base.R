@@ -7,7 +7,7 @@
 # sectoral contribution and 10 year trend
 # changes in per capita emissions
 # specific chart for 10 year trend of commercial and industrial emissions
-# territorial emissions have been used throughout and North Somerset not included
+# territorial emissions have been used throughout and North Somerset included
 
 pacman::p_load(
   tidyverse,
@@ -408,14 +408,15 @@ sector_gt <- gt_source_tbl |>
   gt_plt_bar(
     sec_prop,
     scale_type = "percent",
-    color = weca_core_colours[1],
+    color = weca_core_colours["rich_purple"],
+    text_color = "white",
     width = 70
   ) %>%
   gt_plt_bar(
     pct_change_10yr,
     scale_type = "percent",
-    color = weca_core_colours[5],
-    text_color = weca_core_colours[1],
+    color = weca_core_colours["west_green"],
+    text_color = "white",
     width = 70
   ) %>%
   cols_label(
@@ -429,7 +430,7 @@ sector_gt <- gt_source_tbl |>
 sector_gt
 
 sector_gt %>%
-  gtsave("plots/gt_sector_table_territorial.png")
+  gtsave("plots/gt_sector_table_territorial_inc_ns_new_colors.png")
 
 # Sector time series ---
 woe_broad_sector_tbl <- sector_tbl |>
