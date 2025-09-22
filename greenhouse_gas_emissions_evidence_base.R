@@ -219,7 +219,7 @@ plot <- plot_tbl %>%
   ) +
   scale_x_continuous(breaks = scale_x) +
   labs(
-    title = "West of England (including North Somerset) trajectory to net zero",
+    title = "West of England trajectory to net zero",
     subtitle = "All sectors: Territorial Emissions",
     colour = "Type",
     x = "Year",
